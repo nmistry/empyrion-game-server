@@ -17,7 +17,7 @@ RUN printf "nobody   ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers && \
     sudo -u nobody tar -xvpf steamcmd.tar.gz && \
     cd steamcmd && \
     sudo -u nobody makepkg --noconfirm -rcCs && \
-    sudo -u nobody mv $(ls *pkg.tar.zst) $STEAM_PACKAGE_PATH
+    sudo -u nobody mv -v $(ls steamcmd-latest*pkg.tar.zst) $STEAM_PACKAGE_PATH
 
 FROM golang:1.21 as godevel
 WORKDIR "/go/src"
@@ -44,7 +44,7 @@ RUN useradd -u 1000 -m steamcmd && \
     pacman -U $STEAM_PACKAGE_PATH --noconfirm && \
     rm $STEAM_PACKAGE_PATH
 
-COPY ["entrypoint.sh", "install_reforged_eden.sh", "/usr/local/bin/"]
+COPY ["entrypoint.sh", "install_reforged_eden.sh", "install_reforged_eden_2.sh", "/usr/local/bin/"]
 WORKDIR /runtime
 USER steamcmd
 VOLUME ["/runtime"]
