@@ -42,6 +42,7 @@ type GameConfig struct {
 	Mode           string `env:"Mode,omitempty" yaml:"Mode,omitempty"`
 	Seed           uint   `env:"Seed" yaml:"Seed"`
 	CustomScenario string `env:"CustomScenario,omitempty" yaml:"CustomScenario,omitempty"`
+	SharedDataURL string `env:"SharedDataURL,omitempty" yaml:"SharedDataURL,omitempty"`
 }
 
 type Config struct {
